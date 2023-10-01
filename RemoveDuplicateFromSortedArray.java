@@ -5,13 +5,12 @@ public class RemoveDuplicateFromSortedArray {
 	public static void main(String[] args) {
 //		int arr[] = { 1, 2, 2, 4 };
 
-		int arr[] = { 1, 2, 2, 2, 2, 2 };
+		int arr[] = { 1, 1, 2, 2, 2, 2, 2 };
 
 		int n = removeDuplicate(arr, arr.length);
 
 		for (int i = 0; i < n; i++)
 			System.out.print(arr[i] + " ");
-		System.out.println();
 	}
 
 	private static int removeDuplicate(int[] arr, int n) {
@@ -27,6 +26,10 @@ public class RemoveDuplicateFromSortedArray {
 				temp[tempSize] = arr[i];
 				tempSize++;
 			}
+		}
+
+		for (int i = 0; i < tempSize; i++) {
+			arr[i] = temp[i];
 		}
 
 		return tempSize;
