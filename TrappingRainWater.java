@@ -21,7 +21,9 @@ public class TrappingRainWater {
 
 		long amt = findAmtOfWaterTrapped(arr, arr.length);
 
-		System.out.println(amt);
+		System.out.println("Optimal Solution : " + amt);
+
+		System.out.println("Better Solution: " + findWaterQty(arr, arr.length));
 
 	}
 
@@ -63,4 +65,27 @@ public class TrappingRainWater {
 		return qty;
 	}
 
+	// Better Solution -- T.C - O(n) ; A.S - O(n)
+	private static long findWaterQty(int arr[], int n) {
+		long qty = 0;
+
+		int lMax[] = new int[n];
+
+		int rMax[] = new int[n];
+
+		lMax[0] = arr[0];
+
+		rMax[n - 1] = arr[n - 1];
+
+		for (int i = 1; i < n; i++)
+			lMax[i] = Math.max(lMax[i - 1], arr[i]);
+
+		for (int i = n - 2; i >= 0; i--)
+			rMax[i] = Math.max(arr[i], rMax[i + 1]);
+
+		for (int i = 1; i < n - 1; i++)
+			qty += (Math.min(lMax[i], rMax[i]) - arr[i]);
+
+		return qty;
+	}
 }
