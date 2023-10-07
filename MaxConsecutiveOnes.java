@@ -8,7 +8,9 @@ public class MaxConsecutiveOnes {
 //		int arr[] = { 0, 0, 0 };
 //		int arr[] = { 1, 0, 1, 1, 1, 1, 0, 1, 1 };
 //		int arr[] = { 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1 };
-		int arr[] = { 0, 1, 1, 0, 0, 1, 1, 1 };
+//		int arr[] = { 0, 1, 1, 0, 0, 1, 1, 1 };
+
+		int arr[] = { 1, 0, 1, 1, 1, 1, 1, 9, 1, 1, 1, 1, 1, 1, 99, 1, 1, 1, 10 };
 //		int arr[] = { 1, 1, 0, 0, 1, 0, 1, 0, 1, 1, 1, 1 };
 
 		System.out.println(find(arr, arr.length));
@@ -22,7 +24,7 @@ public class MaxConsecutiveOnes {
 		int maxC = 0;
 
 		for (int i = 0; i < n; i++) {
-			if (arr[i] != 0) {
+			if (arr[i] == 1) {
 				c++;
 			} else {
 				c = 0;
