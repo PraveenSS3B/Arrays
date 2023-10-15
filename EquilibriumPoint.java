@@ -16,6 +16,27 @@ public class EquilibriumPoint {
 
 		System.out.println(findEfficient(arr, arr.length));
 
+		System.out.println(findMoreEfficient(arr, arr.length));
+
+	}
+
+	private static boolean findMoreEfficient(int[] arr, int n) {
+
+		int ls = 0, rs = 0;
+
+		for (int i = 0; i < n; i++)
+			rs += arr[i];
+
+		for (int i = 0; i < n; i++) {
+			rs -= arr[i];
+
+			if (ls == rs)
+				return true;
+
+			ls += arr[i];
+		}
+
+		return false;
 	}
 
 	private static boolean findEfficient(int[] arr, int n) {
