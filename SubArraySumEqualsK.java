@@ -1,4 +1,4 @@
-class Solution {
+class SubArraySumEqualsK {
     public int subarraySum(int[] nums, int k) {
         int c = 0, n = nums.length, s=0;
         HashMap <Integer, Integer> map = new HashMap<>();
