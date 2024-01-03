@@ -1,37 +1,39 @@
 class ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<>();
-        HashSet<List<Integer>> tripletSet = new HashSet<>();
-        // Arrays.sort(nums);
+
         int n = nums.length;
 
         for(int i = 0; i < n; i++)
         {
-            HashSet<Integer> set = new HashSet<>();
-            for(int j = i + 1; j < n; j++)
-            {
-                int target = -(nums[i] + nums[j]);
+            if(i > 0 && nums[i] == nums[i-1]) continue;
 
-                if(set.contains(target))
-                {
-                    List<Integer> triplet = Arrays.asList(target, nums[i], nums[j]);
-                    Collections.sort(triplet);
-                    // if you comment the above and uncomment the Line 5 it will also work.
-                    tripletSet.add(triplet);
+            int j = i + 1;
+            int k = n - 1;
+
+            while(j < k){
+                int sum = nums[i] + nums[j] + nums[k];
+
+                if(sum < 0){
+                    j++;
                 }
-                else
-                {
-                    set.add(nums[j]);
+
+                else if(sum>0){
+                    k--;
                 }
-                
+                else{
+                    List<Integer> l = Arrays.asList(nums[i], nums[j], nums[k]);
+                    ans.add(l);
+                    j++;
+                    k--;
+                    while(j < k && nums[j] == nums[j - 1]) j++;
+                    while(j < k && nums[k] == nums[k + 1]) k--;
+                    
+                }
             }
-
-            // set.clear();
         }
 
-
-        return new ArrayList<>(tripletSet);
-
-//T.C - O(n^2 * log(n); S.C - O(N) + O(no. of triplets)
+        return ans;
     }
 }
