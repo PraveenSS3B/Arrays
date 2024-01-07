@@ -2,29 +2,28 @@ public class MissingAndRepeatingNumber {
     public static int[] findMissingRepeatingNumbers(int[] a) {
 
         int n = a.length;
-        boolean visited[] = new boolean[n+1];
 
-        int repeated = 0;
+        long sumOfN = n * (n + 1) / 2;
 
-        for (int i = 1; i <= n; i++) {
-            if (visited[a[i - 1]]) {
-                repeated = a[i - 1];
-            }
+        long sumOfSqs = n * (n + 1) * (2 * n + 1) / 6;
 
-            else {
-                visited[a[i - 1]] = true;
-            }
+        long sum = 0;
+        long sqs = 0;
+
+        for (int i = 0; i < n; i++) {
+            sum += a[i];
+            sqs += (long) (a[i] * a[i]);
         }
 
-        for(int i = 1;i <= n; i++)
-        {
-            if(!visited[i])
-            {
-                return new int[]{repeated, i};
-            }
-        }
+        int subtractSqs = (int) (sumOfSqs - sqs);
 
-        return new int[]{};
+        int subtractSum = (int) (sumOfN - sum);
+
+        int tmp = subtractSqs / subtractSum;
+
+        int ans = (tmp + subtractSum) / 2;
+
+        return new int[] { ans - subtractSum, ans };
 
     }
 }
